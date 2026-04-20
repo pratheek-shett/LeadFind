@@ -1,58 +1,87 @@
 # LeadFind
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+LeadFind is an Angular-based lead management dashboard that fetches lead records from a mock API, lets users search and filter the results, and opens a detailed view for each lead.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Fetches lead data from a remote mock API on load
+- Displays leads in a responsive card grid
+- Filters results by search text and lead status
+- Opens a lead details popup for the selected record
+- Uses a clean component-based Angular structure
 
-```bash
-ng serve
-```
+## Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular 21
+- TypeScript
+- Bootstrap
 
-## Code scaffolding
+## Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js 18 or later
+- npm 10 or later
 
-```bash
-ng generate component component-name
-```
+## Setup
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Clone the repository and install dependencies:
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Start the development server:
 
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Open the app in your browser at:
 
 ```bash
-ng e2e
+http://localhost:4200/
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Available Scripts
+
+```bash
+npm start
+```
+
+Starts the local development server.
+
+```bash
+npm run build
+```
+
+Builds the application for production.
+
+```bash
+npm run watch
+```
+
+Rebuilds automatically during development.
+
+```bash
+npm test
+```
+
+Runs the test suite.
+
+## Project Structure
+
+```text
+src/
+  app/
+    app.ts                Root application shell
+    container/            Lead dashboard feature area
+    header/               Main navigation header
+    Models/               Shared TypeScript models
+```
+
+## Notes
+
+- Lead data is loaded from a remote mock API at runtime.
+- The dashboard is split into reusable Angular components for search, filtering, listing, and details.
 
 ## Additional Resources
 
