@@ -1,8 +1,8 @@
-<nav class="nav">
-  <form class="form-inline">
+<nav class="search-panel">
+  <form class="form-inline search-form">
     <div class="comb">
       <input
-        class="search form-control mr-sm-1 ms-auto"
+        class="search form-control ms-auto"
         type="search"
         placeholder="Search"
         aria-label="Search"
@@ -13,6 +13,6 @@
       <button type="button" class="btn my-2 my-sm-0" (click)="emitSearchValue()">Search</button>
       <button type="button" (click)="clearSearch()">Clear</button>
     </div>
-    <h2>{{ submittedSearchText }}</h2>
+    <h2 class="search-result">{{ submittedSearchText }}</h2>
   </form>
 </nav>
