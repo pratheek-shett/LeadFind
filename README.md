@@ -86,11 +86,12 @@ src/
 
 ## GitHub Pages
 
-This repository includes a GitHub Actions workflow that deploys `main` to GitHub Pages automatically.
+This repository is set up to publish from the `gh-pages` branch.
 
-After pushing to `main`:
+After the branch is pushed:
 
 1. Open the repository on GitHub.
 2. Go to `Settings` > `Pages`.
-3. Set the source to `GitHub Actions` if it is not already selected.
-4. Wait for the workflow run to finish, then open the published Pages URL.
+3. Under `Build and deployment`, choose `Deploy from a branch`.
+4. Select `gh-pages` and `/ (root)`.
+5. Save the settings and open the published Pages URL once GitHub finishes updating it.
