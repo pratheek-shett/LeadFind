@@ -1,4 +1,4 @@
-export interface Leads {
+export interface Lead {
   id?: string;
   avatar?: string;
   clientName: string;

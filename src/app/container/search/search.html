@@ -1,19 +1,18 @@
 <nav class="nav">
   <form class="form-inline">
     <div class="comb">
-      <!-- <input class=" search form-control mr-sm-1 ms-auto " type="search" placeholder="Search" aria-label="Search" #inputvalue> -->
       <input
-        class="search form-control mr-sm-1 ms-auto "
+        class="search form-control mr-sm-1 ms-auto"
         type="search"
         placeholder="Search"
         aria-label="Search"
-        #inputvalue
+        #searchInput
         [(ngModel)]="searchTerm"
         name="searchTerm"
       >
-      <button type="button" class="btn my-2 my-sm-0" (click)="getSearchValueFromField()">Search</button>
-      <button type="button" (click)="erase()">×</button>
+      <button type="button" class="btn my-2 my-sm-0" (click)="emitSearchValue()">Search</button>
+      <button type="button" (click)="clearSearch()">Clear</button>
     </div>
-    <h2>{{subtitle}}</h2>
+    <h2>{{ submittedSearchText }}</h2>
   </form>
 </nav>

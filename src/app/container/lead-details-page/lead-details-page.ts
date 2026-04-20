@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Leads } from '../../Models/Leads';
+import { Lead } from '../../Models/Leads';
 
 @Component({
   selector: 'app-lead-details-page',
@@ -9,5 +9,5 @@ import { Leads } from '../../Models/Leads';
 })
 export class LeadDetailsPage {
   @Input()
-  lead! : Leads;
+  lead!: Lead;
 }

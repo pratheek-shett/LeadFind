@@ -16,29 +16,28 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './search.css',
 })
 export class Search implements AfterViewInit {
-  subtitle: string = '';
+  submittedSearchText: string = '';
   searchTerm: string = '';
 
   @Output()
-  storethesearchvalue: EventEmitter<string> = new EventEmitter();
+  searchChange: EventEmitter<string> = new EventEmitter();
 
-  @ViewChild('inputvalue', {})
-  getdata!: ElementRef<HTMLInputElement>;
-
-  @ViewChild('inputvalue')
-  erasevalue!: ElementRef<HTMLInputElement>;
+  @ViewChild('searchInput')
+  searchInput!: ElementRef<HTMLInputElement>;
 
   ngAfterViewInit() {
-    this.getdata.nativeElement.focus();
+    this.searchInput.nativeElement.focus();
   }
 
-  getSearchValueFromField() {
-    this.subtitle = this.searchTerm.trim();
-    this.storethesearchvalue.emit(this.subtitle);
+  emitSearchValue() {
+    this.submittedSearchText = this.searchTerm.trim();
+    this.searchChange.emit(this.submittedSearchText);
   }
 
-  erase() {
+  clearSearch() {
     this.searchTerm = '';
-    this.erasevalue.nativeElement.value = '';
+    this.submittedSearchText = '';
+    this.searchInput.nativeElement.value = '';
+    this.searchInput.nativeElement.focus();
   }
 }

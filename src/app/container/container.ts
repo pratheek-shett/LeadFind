@@ -1,10 +1,10 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { Lead } from '../Models/Leads';
 import { Header } from '../header/header';
-import { Search } from './search/search';
 import { FirstDataLoadingPage } from './first-data-loading-page/first-data-loading-page';
-import { LeadDetailsPage } from "./lead-details-page/lead-details-page";
-import { Leads } from '../Models/Leads';
+import { LeadDetailsPage } from './lead-details-page/lead-details-page';
+import { Search } from './search/search';
 
 @Component({
   selector: 'app-container',
@@ -13,37 +13,37 @@ import { Leads } from '../Models/Leads';
   styleUrl: './container.css',
 })
 export class Container {
-  data: any[] = [];
-  searchElementfromTemplate: string = '';
+  leads: Lead[] = [];
+  searchQuery: string = '';
+  selectedLead: Lead | null = null;
 
-  selectedLead!:Leads | null;
+  apiUrl: string =
+    'https://69df1d8bd6de26e119289320.mockapi.io/api/leads/leads';
 
   constructor() {
-    void this.getalldata(this.url);
+    void this.fetchLeads(this.apiUrl);
   }
 
-  updateSearchValue(event: string) {
-    this.searchElementfromTemplate = event;
+  onSearchChange(searchQuery: string) {
+    this.searchQuery = searchQuery;
   }
 
-
-  //fething the data
-    url:string = "https://69df1d8bd6de26e119289320.mockapi.io/api/leads/leads"
-     async getalldata(url:string){
-      const response = await fetch(url);
-      if(!response.ok){
-        throw new Error("Issue")
-      }
-      this.data = await response.json();
-      return this.data;
+  async fetchLeads(url: string): Promise<Lead[]> {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Issue');
     }
 
-    recieveObject(event:any){
-      this.selectedLead = event;
-      console.log(this.selectedLead)
-    }
+    this.leads = await response.json();
+    return this.leads;
+  }
 
-    closePopup(){
-      this.selectedLead = null;
-    }
+  onLeadSelected(event: Lead) {
+    this.selectedLead = event;
+    console.log(this.selectedLead);
+  }
+
+  closePopup() {
+    this.selectedLead = null;
+  }
 }

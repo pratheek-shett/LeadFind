@@ -14,6 +14,7 @@ LeadFind is an Angular-based lead management dashboard that fetches lead records
 
 - Angular 21
 - TypeScript
+- RxJS
 - Bootstrap
 
 ## Prerequisites
@@ -82,7 +83,3 @@ src/
 
 - Lead data is loaded from a remote mock API at runtime.
 - The dashboard is split into reusable Angular components for search, filtering, listing, and details.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

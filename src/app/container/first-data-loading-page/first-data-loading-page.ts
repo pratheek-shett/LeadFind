@@ -8,7 +8,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { Leads } from '../../Models/Leads';
+import { Lead } from '../../Models/Leads';
 import { HomeFilteredRadioButton } from '../home-filtered-radio-button/home-filtered-radio-button';
 
 @Component({
@@ -18,37 +18,36 @@ import { HomeFilteredRadioButton } from '../home-filtered-radio-button/home-filt
   styleUrl: './first-data-loading-page.css',
 })
 export class FirstDataLoadingPage implements OnChanges {
-  dataavaialble: boolean = true;
-  leadlist!: Leads;
-
   @Input()
-  data: any[] = [];
+  leads: Lead[] = [];
 
   @ViewChild(HomeFilteredRadioButton)
-  radiocomponent!: HomeFilteredRadioButton;
+  statusFilterComponent!: HomeFilteredRadioButton;
 
   @Input()
-  searchElementfromTemplate: string = '';
+  searchQuery: string = '';
 
-  sortthedata: any[] = [];
+  filteredLeads: Lead[] = [];
   selectedStatus: string = 'All';
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['data'] || changes['searchElementfromTemplate']) {
+    if (changes['leads'] || changes['searchQuery']) {
       this.applyFilters();
     }
   }
 
-  handlefilteringthevalue(event: string) {
-    this.selectedStatus = event;
+  onStatusFilterChange(status: string) {
+    this.selectedStatus = status;
     this.applyFilters();
   }
 
   applyFilters() {
-    const filteredvalue = this.searchElementfromTemplate.toLowerCase().trim();
+    const normalizedQuery = this.searchQuery.toLowerCase().trim();
 
-    this.sortthedata = this.data.filter((item: any) => {
-      const techStack = Array.isArray(item.techStack) ? item.techStack.join(' ') : '';
+    this.filteredLeads = this.leads.filter((item: Lead) => {
+      const techStack = Array.isArray(item.techStack)
+        ? item.techStack.join(' ')
+        : '';
       const searchableContent = [
         item.clientName,
         item.projectTitle,
@@ -60,22 +59,23 @@ export class FirstDataLoadingPage implements OnChanges {
         .join(' ')
         .toLowerCase();
 
-      const matchesStatus = this.selectedStatus === 'All' || item.status === this.selectedStatus;
-      const matchesSearch = !filteredvalue || searchableContent.includes(filteredvalue);
+      const matchesStatus =
+        this.selectedStatus === 'All' || item.status === this.selectedStatus;
+      const matchesSearch =
+        !normalizedQuery || searchableContent.includes(normalizedQuery);
 
       return matchesStatus && matchesSearch;
     });
   }
 
-  sendTheObject(a: Leads) {
-    this.leadlist = a;
-    this.getAllLeadJsonObject.emit(a);
+  onLeadSelected(lead: Lead) {
+    this.leadSelected.emit(lead);
   }
 
   @Output()
-  getAllLeadJsonObject = new EventEmitter();
+  leadSelected = new EventEmitter<Lead>();
 
-  resetdatafetch() {
-    this.radiocomponent.reloadtheapifetch();
+  resetFilters() {
+    this.statusFilterComponent.resetFilter();
   }
 }

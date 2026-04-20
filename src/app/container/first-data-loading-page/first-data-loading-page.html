@@ -1,18 +1,16 @@
 <app-home-filtered-radio-button
-  [datagetting]="searchElementfromTemplate"
-  (dataFromRadio)="handlefilteringthevalue($event)"
-  #getsearchingvalue
+  (statusChange)="onStatusFilterChange($event)"
 ></app-home-filtered-radio-button>
 
-<div class="card-container" *ngIf="sortthedata && sortthedata.length > 0">
-  <div *ngFor="let a of sortthedata" (click)="sendTheObject(a)" class="meal-card">
-    <img [src]="a.avatar">
-    <h2>{{ a.clientName }}</h2>
-    <p>Status: {{ a.status }}</p>
+<div class="card-container" *ngIf="filteredLeads && filteredLeads.length > 0">
+  <div *ngFor="let lead of filteredLeads" (click)="onLeadSelected(lead)" class="meal-card">
+    <img [src]="lead.avatar">
+    <h2>{{ lead.clientName }}</h2>
+    <p>Status: {{ lead.status }}</p>
   </div>
 </div>
 
-<button #reloads (click)="resetdatafetch()" class="reload">↻</button>
+<button (click)="resetFilters()" class="reload">Reset</button>
 
 <footer class="site-footer">
   <h6>@Development Stage</h6>
