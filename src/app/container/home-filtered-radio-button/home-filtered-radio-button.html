@@ -1,0 +1,20 @@
+
+<div class="meal-card">
+ 
+<div id="radiobuttondiv">
+<ng-container *ngFor="let value of radioValues; let i = index">
+<input
+  type="radio"
+  [id]="'radio-' + i"
+  name="lead-status"
+  [(ngModel)]="radioButtonValue"
+  (change)="getValueFromRadio()"
+  [value]="value">
+<span>{{value}}</span>
+</ng-container>
+
+
+
+</div>
+
+</div>
