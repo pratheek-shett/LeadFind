@@ -41,3 +41,10 @@
   padding-left: 10px;
 
 }
+
+.reload{
+    border-radius: 100%;
+    border-style: none;
+    width: 39px;
+    height: 39px;
+  }
