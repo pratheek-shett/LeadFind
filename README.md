@@ -83,3 +83,14 @@ src/
 
 - Lead data is loaded from a remote mock API at runtime.
 - The dashboard is split into reusable Angular components for search, filtering, listing, and details.
+
+## GitHub Pages
+
+This repository includes a GitHub Actions workflow that deploys `main` to GitHub Pages automatically.
+
+After pushing to `main`:
+
+1. Open the repository on GitHub.
+2. Go to `Settings` > `Pages`.
+3. Set the source to `GitHub Actions` if it is not already selected.
+4. Wait for the workflow run to finish, then open the published Pages URL.
